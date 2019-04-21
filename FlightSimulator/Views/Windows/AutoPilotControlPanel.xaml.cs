@@ -12,17 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FlightSimulator
+namespace FlightSimulator.Views.Windows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AutoPilotControlPanel.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AutoPilotControlPanel : UserControl
     {
-        public MainWindow()
+        public AutoPilotControlPanel()
         {
             InitializeComponent();
         }
-
-	}
+    }
 }

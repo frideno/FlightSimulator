@@ -12,16 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FlightSimulator
+namespace FlightSimulator.Views.Windows
 {
     /// <summary>
-    /// Interaction logic for SettingsWindow.xaml
+    /// Interaction logic for ManualControlPanel.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class ManualControlPanel : UserControl
     {
-        public SettingsWindow()
+        public ManualControlPanel()
         {
             InitializeComponent();
+			this.DataContext = new ViewModels.Windows.ManualControlPanelViewModel(new Model.ManualControlPanelModel());
         }
     }
 }

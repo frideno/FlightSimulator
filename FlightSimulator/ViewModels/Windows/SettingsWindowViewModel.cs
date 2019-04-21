@@ -1,5 +1,6 @@
 ﻿using FlightSimulator.Model;
 using FlightSimulator.Model.Interface;
+using FlightSimulator.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,22 +65,23 @@ namespace FlightSimulator.ViewModels.Windows
         #region Commands
         #region ClickCommand
         private ICommand _clickCommand;
-        public ICommand ClickCommand
+        public ICommand OkClickCommand
         {
             get
             {
-                return _clickCommand ?? (_clickCommand = new CommandHandler(() => OnClick()));
+                return _clickCommand ?? (_clickCommand = new CommandHandler(() => OnOK()));
             }
         }
-        private void OnClick()
+        private void OnOK()
         {
+		
             model.SaveSettings();
-        }
+		}
         #endregion
 
         #region CancelCommand
         private ICommand _cancelCommand;
-        public ICommand CancelCommand
+        public ICommand CancelClickCommand
         {
             get
             {
@@ -88,8 +90,10 @@ namespace FlightSimulator.ViewModels.Windows
         }
         private void OnCancel()
         {
+		
             model.ReloadSettings();
-        }
+
+		}
         #endregion
         #endregion
     }
