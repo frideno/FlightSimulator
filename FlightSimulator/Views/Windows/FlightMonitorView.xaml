@@ -6,6 +6,7 @@
 		xmlns:views="clr-namespace:FlightSimulator.Views"
         xmlns:local="clr-namespace:FlightSimulator.Views.Windows"
         mc:Ignorable="d"
+			 x:Name="flightMonitor"
 		d:DesignHeight="465.957" d:DesignWidth="538.299">
 	<Grid Background="White">
 		<Grid.RowDefinitions>

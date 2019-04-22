@@ -9,14 +9,15 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
 {
-    class FlightMonitorViewModel
-    {
-		private IFlightMonitorModel model;
+	public class FlightMonitorViewModel: BaseNotify
+	{
+		private FlightMonitorModel model;
 
-		public FlightMonitorViewModel(IFlightMonitorModel m) {
+		public FlightMonitorViewModel(FlightMonitorModel m) {
 			model = m;
 		}
 
+		
 		#region connectCommand
 		private ICommand _connectCommand;
 		public ICommand ConnectCommand
@@ -33,7 +34,7 @@ namespace FlightSimulator.ViewModels
 				));
 			}
 		}
-		
+
 		#endregion
 	}
 }

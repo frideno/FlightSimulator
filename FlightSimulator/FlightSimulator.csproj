@@ -68,6 +68,7 @@
     <Compile Include="Model\FlightMonitorModel.cs" />
     <Compile Include="Model\Interface\IClient.cs" />
     <Compile Include="Model\Interface\IClientHandler.cs" />
+    <Compile Include="Model\Interface\IDataManager.cs" />
     <Compile Include="Model\Interface\IFlightMonitorModel.cs" />
     <Compile Include="Model\Interface\IServer.cs" />
     <Compile Include="Model\ManualControlPanelModel.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Model\SimpleServer.cs" />
     <Compile Include="Model\SimulatorDataRecieverClientHandler.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
+    <Compile Include="Model\DataManager.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
     <Compile Include="ViewModels\Windows\FlightMonitorViewModel.cs" />
     <Compile Include="ViewModels\Windows\ManualControlPanelViewModel.cs" />
@@ -164,6 +166,5 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

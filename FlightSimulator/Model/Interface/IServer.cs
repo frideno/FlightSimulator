@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
-	interface IServer
+	public interface IServer
 	{
 		// the port the server will work on.
 		int Port { get; set; }

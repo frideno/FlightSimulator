@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model.Interface
 {
-	interface IClient
+	public interface IClient
 	{
 		// the port + ip the client will talk to .
 		IPEndPoint IpAndPort { get; set; }
-		
-		// the conncect method to connect a server.
+
 		void Connect();
 
 		// send data to the server.

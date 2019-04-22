@@ -22,7 +22,7 @@ namespace FlightSimulator.Views.Windows
 	/// </summary>
 	public partial class FlightMonitorView: UserControl
 	{
-		FlightMonitorViewModel vm;
+		public FlightMonitorViewModel vm;
 		public FlightMonitorView()
 		{
 			InitializeComponent();

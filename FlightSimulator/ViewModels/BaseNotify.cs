@@ -13,6 +13,7 @@ namespace FlightSimulator.ViewModels
 
         public void NotifyPropertyChanged(string propName)
         {
+
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
