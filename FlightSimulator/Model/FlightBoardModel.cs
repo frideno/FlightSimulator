@@ -9,15 +9,16 @@ namespace FlightSimulator.Model
 {
 	public class FlightBoardModel
 	{
-		public double Lon {
+		public double Lon
+		{
 			get {
-				return DataManager.Instance.InfoDataDictionary["longitude-deg"];
+				return DataManager.Instance.InfoDataDictionary["/position/longitude-deg"];
 			}
 			
 		}
 		public double Lat {
 			get {
-				return DataManager.Instance.InfoDataDictionary["latitude-deg"];
+				return DataManager.Instance.InfoDataDictionary["/position/latitude-deg"];
 			}
 		}
 	}

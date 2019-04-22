@@ -18,7 +18,7 @@ namespace FlightSimulator.Model
 		static SimulatorDataRecieverClientHandler() {
 			GenericSmallAttributes = new List<string>(new string[]
 				{
-					"longitude-deg", "latitude-deg",
+					"/position/longitude-deg", "/position/latitude-deg",
 					"/instrumentation/airspeed-indicator/indicated-speed-kt","/instrumentation/altimeter/indicated-altitude-ft",
 					"/instrumentation/altimeter/pressure-alt-ft","/instrumentation/attitude-indicator/indicated-pitch-deg",
 					"/instrumentation/attitude-indicator/indicated-roll-deg","/instrumentation/attitude-indicator/internal-pitch-deg",
@@ -31,11 +31,12 @@ namespace FlightSimulator.Model
 					"/controls/flight/elevator","/controls/flight/rudder",
 					"/controls/flight/flaps","/controls/engines/engine/throttle","/engines/engine/rpm"
 				});
-			Console.WriteLine("len = {0}", GenericSmallAttributes.Count);
 		}
 
 		public void HandleClient(TcpClient client)
 		{
+			DataManager.Instance.Connected = true;
+
 			Thread t = new Thread(() =>
 			{
 				using (NetworkStream stream = client.GetStream())

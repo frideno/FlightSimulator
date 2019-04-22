@@ -34,6 +34,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon_Qlw_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamicDataDisplay">
       <HintPath>..\dll\DynamicDataDisplay.dll</HintPath>
@@ -165,6 +171,15 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\icon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon_LFS_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon_Qlw_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,14 +45,12 @@ namespace FlightSimulator.Model
 			// opens the server so the simulator connects us a a client.
 			dataManager.InfoChannel.Port = ApplicationSettingsModel.Instance.FlightInfoPort;
 			dataManager.InfoChannel.Start();
-			Console.WriteLine("opened our server");
 
 
 			// connects to the simulator's server as a client.
 			dataManager.CommandChannel.IpAndPort = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
 															ApplicationSettingsModel.Instance.FlightCommandPort);
 			dataManager.CommandChannel.Connect();
-			Console.WriteLine("connected to a server");
 
 		}
 

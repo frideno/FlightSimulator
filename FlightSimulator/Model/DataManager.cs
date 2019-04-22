@@ -17,8 +17,8 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels
 {
-    class DataManager: BaseNotify, IDataManager
-    {
+	class DataManager : BaseNotify, IDataManager
+	{
 		#region Singleton
 		private static DataManager m_Instance = null;
 		public static DataManager Instance
@@ -41,6 +41,7 @@ namespace FlightSimulator.ViewModels
 			CommandChannel = new SimpleClient();
 
 			infoDataDictionary = new Dictionary<string, double>();
+			Connected = false;
 		}
 		#endregion
 
@@ -79,5 +80,7 @@ namespace FlightSimulator.ViewModels
 		public IServer InfoChannel { get; }
 
 		public IClient CommandChannel { get; }
+		public bool Connected { get; set; }
+			
 	}
 }

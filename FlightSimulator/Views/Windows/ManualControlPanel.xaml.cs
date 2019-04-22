@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using FlightSimulator.ViewModels.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +21,13 @@ namespace FlightSimulator.Views.Windows
     /// </summary>
     public partial class ManualControlPanel : UserControl
     {
-        public ManualControlPanel()
-        {
-            InitializeComponent();
-			this.DataContext = new ViewModels.Windows.ManualControlPanelViewModel(new Model.ManualControlPanelModel());
-        }
-    }
+		ManualControlPanelViewModel mv;
+
+		public ManualControlPanel()
+		{
+			InitializeComponent();
+			mv = new ManualControlPanelViewModel(new ManualControlPanelModel());
+			this.DataContext = mv;
+		}
+	}
 }

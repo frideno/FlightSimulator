@@ -21,11 +21,15 @@ namespace FlightSimulator.Model
 			tcpClient = new TcpClient();
 			tcpClient.Connect(IpAndPort);
 
+			var message = System.Text.Encoding.ASCII.GetBytes(str);
+
 			using (NetworkStream stream = tcpClient.GetStream())
 			using (BinaryWriter writer = new BinaryWriter(stream))
 			{
-				writer.Write(str);
+
+				writer.Write(message, 0, message.Length);
 			}
+			tcpClient.Close();
 		}
 
 		public void Connect() {

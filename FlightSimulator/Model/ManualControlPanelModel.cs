@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Model.Interface;
+using FlightSimulator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,51 +10,92 @@ namespace FlightSimulator.Model
 {
     public class ManualControlPanelModel : IManualControlPanelModel
     {
-		//server reference.
+		public ManualControlPanelModel() {
+			DataManager.Instance.InfoDataDictionary["/controls/flight/rudder"] = 0;
+			DataManager.Instance.InfoDataDictionary["/controls/flight/elevator"] = 0;
+			DataManager.Instance.InfoDataDictionary["/controls/engines/current-engine/throttle"] = 0;
+			DataManager.Instance.InfoDataDictionary["/controls/flight/aileron"] = 0;
+		}
 
-        #region Singleton
-        private static IManualControlPanelModel m_Instance = null;
-        public static IManualControlPanelModel Instance
-        {
-            get
-            {
-                if(m_Instance == null)
-                {
-                    m_Instance = new ManualControlPanelModel();
-                }
-                return m_Instance;
-            }
-        }
-
-		#endregion
-		private double rudder = 0.5;
-        public double Rudder
+		
+		public double Rudder
         {
 			
-            get { return rudder; }
-            set { rudder = value; }
+            get
+			{
+			
+				return rudderValue;
+			}
+			set
+			{
+				rudderValue = value;
+				string command = "set /controls/flight/rudder " + value + "\r\n";
+				DataManager.Instance.CommandChannel.Send(command);
+			}
 		}
-		private double elevator;
 		public double Elevator
 		{
 
-			get { return elevator; }
-			set { elevator = value; }
+			get
+			{
+			
+				return elevatorValue;
+			}
+			set
+			{
+				elevatorValue = value;
+				if (DataManager.Instance.Connected)
+				{
+					string command = "set /controls/flight/elevator " + value + "\r\n";
+					DataManager.Instance.CommandChannel.Send(command);
+				}
+			}
 		}
-		private double throttle;
 
 		public double Throttle
 		{
 
-			get { return throttle; }
-			set { throttle = value; }
+			get
+			{
+				return throttleValue;
+			}
+			set
+			{
+				throttleValue = value;
+
+				if (DataManager.Instance.Connected)
+				{
+					string command = "set /controls/engines/current-engine/throttle " + value + "\r\n";
+					Console.Write(command);
+					DataManager.Instance.CommandChannel.Send(command);
+				}
+			}
 		}
-		private double aileron ;
 		public double Aileron
 		{
 
-			get { return aileron; }
-			set { aileron = value; }
+			get
+			{
+				return aileronValue;
+			}
+			set
+			{
+				aileronValue = value;
+
+				if (DataManager.Instance.Connected)
+				{
+					string command = "set /controls/flight/aileron " + value + "\r\n";
+					DataManager.Instance.CommandChannel.Send(command);
+
+				}
+			}
 		}
+
+		 double rudderValue  = 0;
+		 double throttleValue  = 0;
+		 double elevatorValue  = 0;
+		 double aileronValue  = 0;
+
+
 	}
 }

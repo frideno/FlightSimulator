@@ -12,6 +12,7 @@ namespace FlightSimulator.ViewModels.Windows
 {
     public class ManualControlPanelViewModel : BaseNotify
     {
+
         private IManualControlPanelModel model;
 
         public ManualControlPanelViewModel(IManualControlPanelModel m)
@@ -21,10 +22,9 @@ namespace FlightSimulator.ViewModels.Windows
 
 		public double Elevator
 		{
-			get { return model.Elevator; }
+			get {return model.Elevator;	}
 			set
 			{
-
 				model.Elevator = value;
 				NotifyPropertyChanged("Elevator");
 			}
@@ -32,10 +32,9 @@ namespace FlightSimulator.ViewModels.Windows
 
 		public double Throttle
 		{ 
-			get { return model.Throttle;}
+			get { return model.Throttle; }
 			set
 			{
-
 				model.Throttle = value;
 				NotifyPropertyChanged("Throttle");
 			}
@@ -46,7 +45,6 @@ namespace FlightSimulator.ViewModels.Windows
 			get { return model.Aileron; }
 			set
 			{
-
 				model.Aileron = value;
 				NotifyPropertyChanged("Aileron");
 			}
@@ -57,7 +55,6 @@ namespace FlightSimulator.ViewModels.Windows
 			get { return model.Rudder; }
 			set
 			{
-
 				model.Rudder = value;
 				NotifyPropertyChanged("Rudder");
 			}

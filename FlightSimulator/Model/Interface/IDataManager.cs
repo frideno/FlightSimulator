@@ -10,6 +10,7 @@ namespace FlightSimulator.Model.Interface
     {
 		IServer InfoChannel { get; }
 		IClient CommandChannel { get; }
+		bool Connected { get; set; }
 		IDictionary<string, double> InfoDataDictionary { get; set; }
 	}
 }
