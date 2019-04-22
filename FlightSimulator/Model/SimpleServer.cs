@@ -12,18 +12,15 @@ namespace FlightSimulator.Model
 {
 	class SimpleServer : IServer
 	{
-		private int port;
 		private TcpListener listener;
-		private IClientHandler ch;
-		public SimpleServer(int port, IClientHandler ch)
-		{
-			this.port = port;
-			this.ch = ch;
-		}
+
+		public int Port { get; set; }
+		public IClientHandler ClientHandler { get; set; }
+
 		public void Start()
 		{
 			IPEndPoint ep = new
-			IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+			IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
 			listener = new TcpListener(ep);
 			listener.Start();
 
@@ -35,7 +32,7 @@ namespace FlightSimulator.Model
 					TcpClient client = listener.AcceptTcpClient();
 
 					// Got new connection
-					ch.HandleClient(client);
+					ClientHandler.HandleClient(client);
 				}
 				catch (SocketException)
 				{
@@ -48,6 +45,7 @@ namespace FlightSimulator.Model
 		public void Stop()
 		{
 			listener.Stop();
-		}
+		}
+
 	}
 }

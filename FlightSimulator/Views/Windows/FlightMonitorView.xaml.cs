@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using FlightSimulator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace FlightSimulator.Views.Windows
 	/// </summary>
 	public partial class FlightMonitorView: UserControl
 	{
+		FlightMonitorViewModel vm;
 		public FlightMonitorView()
 		{
 			InitializeComponent();
+			vm = new FlightMonitorViewModel(new FlightMonitorModel());
+			this.DataContext = vm;
 		}
 
 		private void SettingsButton_Click(object sender, RoutedEventArgs e)

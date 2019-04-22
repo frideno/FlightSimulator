@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.Model.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,12 @@ namespace FlightSimulator.Model
 {
 	interface IServer
 	{
+		// the port the server will work on.
+		int Port { get; set; }
+
+		// the way the server will handle its clients.
+		IClientHandler ClientHandler { get; set; }
+
 		// start the server's data streaming.
 		void Start();
 

@@ -65,7 +65,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\FlightBoardModel.cs" />
+    <Compile Include="Model\FlightMonitorModel.cs" />
+    <Compile Include="Model\Interface\IClient.cs" />
     <Compile Include="Model\Interface\IClientHandler.cs" />
+    <Compile Include="Model\Interface\IFlightMonitorModel.cs" />
     <Compile Include="Model\Interface\IServer.cs" />
     <Compile Include="Model\ManualControlPanelModel.cs" />
     <Compile Include="Model\ApplicationSettingsModel.cs" />
@@ -73,9 +76,12 @@
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\Interface\IManualControlPanelModel.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
+    <Compile Include="Model\SimpleClient.cs" />
     <Compile Include="Model\SimpleServer.cs" />
+    <Compile Include="Model\SimulatorDataRecieverClientHandler.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
+    <Compile Include="ViewModels\Windows\FlightMonitorViewModel.cs" />
     <Compile Include="ViewModels\Windows\ManualControlPanelViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="Views\FlightBoard.xaml.cs">
