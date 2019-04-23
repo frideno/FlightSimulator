@@ -20,24 +20,12 @@ namespace FlightSimulator.ViewModels
 
         public double Lon
 		{
-			get
-			{
-				double l = model.Lon;
-				Console.Write("Lon = {0}", l);
-				return l;
-
-			}
-			
+			get	{ return model.Lon;	}
 		}
 
 		public double Lat
 		{
-			get
-			{
-				double l = model.Lat;
-				Console.Write("Lat = {0}", l);
-				return l;
-			}
+			get { return model.Lat; }
 
 		}
 

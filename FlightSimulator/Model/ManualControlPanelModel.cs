@@ -66,7 +66,6 @@ namespace FlightSimulator.Model
 				if (DataManager.Instance.Connected)
 				{
 					string command = "set /controls/engines/current-engine/throttle " + value + "\r\n";
-					Console.Write(command);
 					DataManager.Instance.CommandChannel.Send(command);
 				}
 			}

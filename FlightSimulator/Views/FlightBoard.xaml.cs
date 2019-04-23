@@ -50,7 +50,7 @@ namespace FlightSimulator.Views
 
         private void Vm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName.Equals("latitude-deg") || e.PropertyName.Equals("longitude-deg"))
+            if(e.PropertyName.Equals("/position/latitude-deg") || e.PropertyName.Equals("/position/longitude-deg"))
             {
                 Point p1 = new Point(vm.Lat, vm.Lon);
                 planeLocations.AppendAsync(Dispatcher, p1);

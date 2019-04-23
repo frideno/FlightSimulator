@@ -10,7 +10,7 @@ using FlightSimulator.ViewModels;
 
 namespace FlightSimulator.Model
 {
-	public class FlightMonitorModel: IFlightMonitorModel
+	public class FlightMonitorModel : IFlightMonitorModel
 	{
 		#region Singleton
 		private static IFlightMonitorModel m_Instance = null;
@@ -31,10 +31,13 @@ namespace FlightSimulator.Model
 		public IClient CommandChannel { get; }
 
 		public IDictionary<string, double> InfoDataDictionary { get; set; }
-		
-		public FlightMonitorModel() {
+		public string ConnectionRequestDescription { get; set; }
+		string connectMessage, disconnectMessage;
 
-			
+		public FlightMonitorModel() {
+			connectMessage = "Connect";
+			disconnectMessage = "Disconnect";
+			ConnectionRequestDescription = connectMessage;
 		}
 
 
@@ -51,12 +54,15 @@ namespace FlightSimulator.Model
 			dataManager.CommandChannel.IpAndPort = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
 															ApplicationSettingsModel.Instance.FlightCommandPort);
 			dataManager.CommandChannel.Connect();
+			this.ConnectionRequestDescription = disconnectMessage;
 
 		}
 
 		public void DisconnectFromChannels()
 		{
 			DataManager.Instance.InfoChannel.Stop();
+			DataManager.Instance.Connected = false;
+			this.ConnectionRequestDescription = connectMessage;
 		}
 	}
 }

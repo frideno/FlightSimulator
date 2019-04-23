@@ -19,8 +19,7 @@ namespace FlightSimulator.Model
 
 		public void Start()
 		{
-			IPEndPoint ep = new
-			IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
+			IPEndPoint ep = new	IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
 			listener = new TcpListener(ep);
 			listener.Start();
 

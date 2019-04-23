@@ -11,13 +11,19 @@ namespace FlightSimulator.ViewModels
 {
 	public class FlightMonitorViewModel: BaseNotify
 	{
+	
 		private FlightMonitorModel model;
+		private bool connectionButtonPressed;	
 
 		public FlightMonitorViewModel(FlightMonitorModel m) {
 			model = m;
+			connectionButtonPressed = false;
 		}
 
-		
+		public string ConnectionRequestDescription
+		{
+			get { return model.ConnectionRequestDescription; }
+		}		
 		#region connectCommand
 		private ICommand _connectCommand;
 		public ICommand ConnectCommand
@@ -27,9 +33,13 @@ namespace FlightSimulator.ViewModels
 			{
 				return _connectCommand ?? (_connectCommand = new CommandHandler(() =>
 				{
-					Console.WriteLine("pressed");
-					model.ConnectToChannels();
+					if (!connectionButtonPressed)
+						model.ConnectToChannels();
+					else
+						model.DisconnectFromChannels();
 
+					connectionButtonPressed = !connectionButtonPressed;
+					NotifyPropertyChanged("ConnectionRequestDescription");
 				}
 				));
 			}

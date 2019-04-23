@@ -33,7 +33,7 @@
 
 			</Grid.RowDefinitions>
 			<Button x:Name="SettingsButton"  Content="Settings" Click="SettingsButton_Click" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1"  Height="60" Width="95"/>
-			<Button x:Name="ConnectButton" Content="Connect" Command="{Binding ConnectCommand}" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0"  Height="60" Width="95"/>
+			<Button x:Name="ConnectButton" Content="{Binding ConnectionRequestDescription}" Command="{Binding ConnectCommand}" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0"  Height="60" Width="95"/>
 
 		</Grid>
 		<views:FlightBoard Grid.Row="1" Grid.Column="1"/>

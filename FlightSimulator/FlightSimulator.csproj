@@ -70,8 +70,10 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AutoPilotModel.cs" />
     <Compile Include="Model\FlightBoardModel.cs" />
     <Compile Include="Model\FlightMonitorModel.cs" />
+    <Compile Include="Model\Interface\IAutoPilotModel.cs" />
     <Compile Include="Model\Interface\IClient.cs" />
     <Compile Include="Model\Interface\IClientHandler.cs" />
     <Compile Include="Model\Interface\IDataManager.cs" />
@@ -89,9 +91,11 @@
     <Compile Include="ViewModels\BaseNotify.cs" />
     <Compile Include="Model\DataManager.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
+    <Compile Include="Views\StateToBrushConverter.cs" />
     <Compile Include="ViewModels\Windows\FlightMonitorViewModel.cs" />
     <Compile Include="ViewModels\Windows\ManualControlPanelViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\AutoPilotViewModel.cs" />
     <Compile Include="Views\FlightBoard.xaml.cs">
       <DependentUpon>FlightBoard.xaml</DependentUpon>
     </Compile>
