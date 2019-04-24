@@ -15,6 +15,9 @@ namespace FlightSimulator.Model
 		// the way the server will handle its clients.
 		IClientHandler ClientHandler { get; set; }
 
+		// an event of when the first client connected to the server.
+		event Action FirstClientConnected;
+
 		// start the server's data streaming.
 		void Start();
 

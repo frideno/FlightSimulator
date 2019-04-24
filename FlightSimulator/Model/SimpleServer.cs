@@ -16,6 +16,7 @@ namespace FlightSimulator.Model
 
 		public int Port { get; set; }
 		public IClientHandler ClientHandler { get; set; }
+		public event Action FirstClientConnected;
 
 		public void Start()
 		{
@@ -30,6 +31,7 @@ namespace FlightSimulator.Model
 				{
 					TcpClient client = listener.AcceptTcpClient();
 
+					FirstClientConnected();
 					// Got new connection
 					ClientHandler.HandleClient(client);
 				}

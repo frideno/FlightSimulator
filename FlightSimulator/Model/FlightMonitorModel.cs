@@ -27,10 +27,6 @@ namespace FlightSimulator.Model
 		}
 		#endregion
 
-		public IServer InfoChannel { get; }
-		public IClient CommandChannel { get; }
-
-		public IDictionary<string, double> InfoDataDictionary { get; set; }
 		public string ConnectionRequestDescription { get; set; }
 		string connectMessage, disconnectMessage;
 
@@ -53,8 +49,11 @@ namespace FlightSimulator.Model
 			// connects to the simulator's server as a client.
 			dataManager.CommandChannel.IpAndPort = new IPEndPoint(IPAddress.Parse(ApplicationSettingsModel.Instance.FlightServerIP),
 															ApplicationSettingsModel.Instance.FlightCommandPort);
-			dataManager.CommandChannel.Connect();
-			this.ConnectionRequestDescription = disconnectMessage;
+
+			ConnectionRequestDescription = disconnectMessage;
+
+			dataManager.InfoChannel.FirstClientConnected += dataManager.CommandChannel.Connect;
+			dataManager.InfoChannel.FirstClientConnected += (() => { dataManager.Connected = true; });
 
 		}
 
@@ -62,7 +61,7 @@ namespace FlightSimulator.Model
 		{
 			DataManager.Instance.InfoChannel.Stop();
 			DataManager.Instance.Connected = false;
-			this.ConnectionRequestDescription = connectMessage;
+			ConnectionRequestDescription = connectMessage;
 		}
 	}
 }

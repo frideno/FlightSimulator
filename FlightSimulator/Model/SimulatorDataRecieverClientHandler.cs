@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using FlightSimulator.Model.Interface;
 using FlightSimulator.ViewModels;
 
@@ -15,7 +16,6 @@ namespace FlightSimulator.Model
 
 		public void HandleClient(TcpClient client)
 		{
-			DataManager.Instance.Connected = true;
 
 			using (NetworkStream stream = client.GetStream())
 			using (StreamReader reader = new StreamReader(stream))

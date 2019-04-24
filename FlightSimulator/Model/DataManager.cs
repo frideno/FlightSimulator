@@ -37,14 +37,11 @@ namespace FlightSimulator.ViewModels
 			InfoChannel = new SimpleServer();
 			InfoChannel.ClientHandler = new SimulatorDataRecieverClientHandler();
 
-
 			CommandChannel = new SimpleClient();
 
 			infoDataDictionary = new Dictionary<string, double>();
 			Connected = false;
-
-			
-
+	
 			foreach (string attr in GenericSmallAttributes)
 			{
 				infoDataDictionary.Add(attr, 0);

@@ -13,26 +13,31 @@ namespace FlightSimulator.Model
 	class SimpleClient : IClient
 	{
 		public IPEndPoint IpAndPort { get; set; }
-		private TcpClient tcpClient;
+
 
 		// send to the server by opening new connection for each message.
 		public void Send(string str)
 		{
-			tcpClient = new TcpClient();
-			tcpClient.Connect(IpAndPort);
-
-			var message = System.Text.Encoding.ASCII.GetBytes(str);
-
-			using (NetworkStream stream = tcpClient.GetStream())
-			using (BinaryWriter writer = new BinaryWriter(stream))
+			try
 			{
+				TcpClient tcpClient = new TcpClient();
+				tcpClient.Connect(IpAndPort);
 
-				writer.Write(message, 0, message.Length);
+				using (NetworkStream stream = tcpClient.GetStream())
+				using (BinaryWriter writer = new BinaryWriter(stream))
+				{
+					var message = System.Text.Encoding.ASCII.GetBytes(str);
+					writer.Write(message, 0, message.Length);
+				}
 			}
-			tcpClient.Close();
+			catch (Exception e)
+			{
+				return;
+			}
 		}
 
 		public void Connect() {
+
 
 		}
 	}

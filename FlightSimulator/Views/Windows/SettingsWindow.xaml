@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FlightSimulator.Views.Windows"
         mc:Ignorable="d"
 		ResizeMode="NoResize"
+		Focusable="True"
         Title="Settings" Height="450" Width="400">
 	<Grid>
 
@@ -41,8 +42,8 @@
 
 
 			</Grid.ColumnDefinitions>
-			<Button x:Name="OkButton"  Content="OK" Grid.Row="1" Grid.Column="0" Width="85" Height="50" Background="ForestGreen" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40" Click="SwitchToMainScreen" Command="{Binding OkClickCommand}" />
-			<Button x:Name="CancelButton" Content="Cancel" Grid.Row="1" Grid.Column="2" Width="85" Height="50" Background="Red" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40" Click="SwitchToMainScreen" Command="{Binding CancelClickCommand}"/>
+			<Button x:Name="OkButton" Content="OK" Grid.Row="1" Grid.Column="0" Width="85" Height="50" Background="GreenYellow" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40" Click="SwitchToMainScreen" Command="{Binding OkClickCommand}" FontSize="20" FontWeight="Bold"/>
+			<Button x:Name="CancelButton" Content="Cancel" Grid.Row="1" Grid.Column="2" Width="85" Height="50" Background="OrangeRed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40" Click="SwitchToMainScreen" Command="{Binding CancelClickCommand}" FontSize="20" FontWeight="Bold"/>
 		</Grid>
 
 	</Grid>
