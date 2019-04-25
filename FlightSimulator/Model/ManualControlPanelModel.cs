@@ -2,6 +2,7 @@
 using FlightSimulator.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,12 @@ namespace FlightSimulator.Model
 {
     public class ManualControlPanelModel : IManualControlPanelModel
     {
+		private DataManager _dataManager;
+
 		public ManualControlPanelModel() {
-			DataManager.Instance.InfoDataDictionary["/controls/flight/rudder"] = 0;
-			DataManager.Instance.InfoDataDictionary["/controls/flight/elevator"] = 0;
-			DataManager.Instance.InfoDataDictionary["/controls/engines/current-engine/throttle"] = 0;
-			DataManager.Instance.InfoDataDictionary["/controls/flight/aileron"] = 0;
+			_dataManager = DataManager.Instance;
+
+			//_dataManager.PropertyChanged += UpdateManual;
 		}
 
 		
@@ -23,14 +25,17 @@ namespace FlightSimulator.Model
 			
             get
 			{
-			
+
 				return rudderValue;
 			}
 			set
 			{
 				rudderValue = value;
-				string command = "set /controls/flight/rudder " + value + "\r\n";
-				DataManager.Instance.CommandChannel.Send(command);
+				if (_dataManager.Connected)
+				{
+					string command = "set /controls/flight/rudder " + value + "\r\n";
+					_dataManager.CommandChannel.Send(command);
+				}
 			}
 		}
 		public double Elevator
@@ -38,16 +43,16 @@ namespace FlightSimulator.Model
 
 			get
 			{
-			
+
 				return elevatorValue;
 			}
 			set
 			{
 				elevatorValue = value;
-				if (DataManager.Instance.Connected)
+				if (_dataManager.Connected)
 				{
 					string command = "set /controls/flight/elevator " + value + "\r\n";
-					DataManager.Instance.CommandChannel.Send(command);
+					_dataManager.CommandChannel.Send(command);
 				}
 			}
 		}
@@ -63,10 +68,10 @@ namespace FlightSimulator.Model
 			{
 				throttleValue = value;
 
-				if (DataManager.Instance.Connected)
+				if (_dataManager.Connected)
 				{
-					string command = "set /controls/engines/current-engine/throttle " + value + "\r\n";
-					DataManager.Instance.CommandChannel.Send(command);
+					string command = "set /controls/engines/engine/throttle " + value + "\r\n";
+					_dataManager.CommandChannel.Send(command);
 				}
 			}
 		}
@@ -81,10 +86,10 @@ namespace FlightSimulator.Model
 			{
 				aileronValue = value;
 
-				if (DataManager.Instance.Connected)
+				if (_dataManager.Connected)
 				{
 					string command = "set /controls/flight/aileron " + value + "\r\n";
-					DataManager.Instance.CommandChannel.Send(command);
+					_dataManager.CommandChannel.Send(command);
 
 				}
 			}
@@ -95,6 +100,23 @@ namespace FlightSimulator.Model
 		 double elevatorValue  = 0;
 		 double aileronValue  = 0;
 
+
+		//void UpdateManual(object sender, PropertyChangedEventArgs args)
+		//{
+
+		//	if (args.PropertyName.Equals("/controls/flight/aileron"))
+		//		aileronValue = _dataManager.InfoDataDictionary["/controls/flight/aileron"];
+
+		//	else if (args.PropertyName.Equals("/controls/flight/elevator"))
+		//		elevatorValue = _dataManager.InfoDataDictionary["/controls/flight/elevator"];
+
+		//	else if (args.PropertyName.Equals("/controls/flight/rudder"))
+		//		rudderValue = _dataManager.InfoDataDictionary["/controls/flight/rudder"];
+
+		//	else if (args.PropertyName.Equals("/controls/engines/current-engine/throttle"))
+		//		throttleValue = _dataManager.InfoDataDictionary["/controls/engines/current-engine/throttle"];
+
+		//}
 
 	}
 }

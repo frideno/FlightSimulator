@@ -33,7 +33,8 @@ namespace FlightSimulator.ViewModels
 			}
 		}
 
-		private DataManager() {
+		private DataManager()
+		{
 			InfoChannel = new SimpleServer();
 			InfoChannel.ClientHandler = new SimulatorDataRecieverClientHandler();
 
@@ -41,7 +42,7 @@ namespace FlightSimulator.ViewModels
 
 			infoDataDictionary = new Dictionary<string, double>();
 			Connected = false;
-	
+
 			foreach (string attr in GenericSmallAttributes)
 			{
 				infoDataDictionary.Add(attr, 0);
@@ -75,15 +76,15 @@ namespace FlightSimulator.ViewModels
 			get { return infoDataDictionary; }
 			set
 			{
+				infoDataDictionary["/position/longitude-deg"] = value["/position/longitude-deg"];
+				value.Remove("/position/longitude-deg");
 
 				foreach (KeyValuePair<string, double> entry in value)
 				{
 
-					if (!entry.Value.Equals(infoDataDictionary[entry.Key]))
-					{
-						infoDataDictionary[entry.Key] = entry.Value;
-						NotifyPropertyChanged(entry.Key);
-					}
+					infoDataDictionary[entry.Key] = entry.Value;
+					Console.WriteLine(entry.Key + " =  " + entry.Value);
+					NotifyPropertyChanged(entry.Key);
 				}
 
 			}
@@ -93,6 +94,6 @@ namespace FlightSimulator.ViewModels
 
 		public IClient CommandChannel { get; }
 		public bool Connected { get; set; }
-			
+
 	}
 }

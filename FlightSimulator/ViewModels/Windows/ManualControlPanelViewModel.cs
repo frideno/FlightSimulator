@@ -2,6 +2,7 @@
 using FlightSimulator.Model.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace FlightSimulator.ViewModels.Windows
         public ManualControlPanelViewModel(IManualControlPanelModel m)
         {
             this.model = m;
+			DataManager.Instance.PropertyChanged += UpdateManualdWhenChanged;
         }
 
 		public double Elevator
@@ -58,6 +60,23 @@ namespace FlightSimulator.ViewModels.Windows
 				model.Rudder = value;
 				NotifyPropertyChanged("Rudder");
 			}
+		}
+
+		void UpdateManualdWhenChanged(object sender, PropertyChangedEventArgs args)
+		{
+
+			if (args.PropertyName.Equals("/controls/flight/aileron"))
+				Aileron = DataManager.Instance.InfoDataDictionary["/controls/flight/aileron"];
+
+			else if (args.PropertyName.Equals("/controls/flight/elevator"))
+				Elevator = DataManager.Instance.InfoDataDictionary["/controls/flight/elevator"];
+
+			else if (args.PropertyName.Equals("/controls/flight/rudder"))
+				Rudder = DataManager.Instance.InfoDataDictionary["/controls/flight/rudder"];
+
+			else if (args.PropertyName.Equals("/controls/engines/engine/throttle"))
+				Throttle = DataManager.Instance.InfoDataDictionary["/controls/engines/engine/throttle"];
+
 		}
 
 	}
