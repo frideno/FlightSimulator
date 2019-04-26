@@ -50,6 +50,9 @@ namespace FlightSimulator.ViewModels
 		}
 		static DataManager()
 		{
+
+			// Initialize the generic small attribute to ask the server .
+
 			GenericSmallAttributes = new List<string>(new string[]
 				{
 					"/position/longitude-deg", "/position/latitude-deg",
@@ -70,21 +73,29 @@ namespace FlightSimulator.ViewModels
 		// List of all generic_small.xml attributes name by their order:
 		public static readonly IList<string> GenericSmallAttributes;
 
+
 		private IDictionary<string, double> infoDataDictionary;
 		public IDictionary<string, double> InfoDataDictionary
 		{
 			get { return infoDataDictionary; }
 			set
 			{
+				// setting LON first, without notifying it, so LON and LAT will notify as a couple.
+
 				infoDataDictionary["/position/longitude-deg"] = value["/position/longitude-deg"];
 				value.Remove("/position/longitude-deg");
 
+				// iterate the key and values in value setted, and for each:
 				foreach (KeyValuePair<string, double> entry in value)
 				{
 
-					infoDataDictionary[entry.Key] = entry.Value;
-					Console.WriteLine(entry.Key + " =  " + entry.Value);
-					NotifyPropertyChanged(entry.Key);
+					// change the value and notify property changed and save it if and only if the property changed.
+
+					if (! infoDataDictionary[entry.Key].Equals(entry.Value))
+					{
+						infoDataDictionary[entry.Key] = entry.Value;
+						NotifyPropertyChanged(entry.Key);
+					}
 				}
 
 			}

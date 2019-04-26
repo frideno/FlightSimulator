@@ -20,6 +20,8 @@ namespace FlightSimulator.ViewModels.Windows
             this.model = model;
         }
 
+		// FlightServerIP - the ip of the server.
+
         public string FlightServerIP
         {
             get { return model.FlightServerIP; }
@@ -30,6 +32,8 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
+		// FlightCommandPort - the port of the command channnel. 
+
         public int FlightCommandPort
         {
             get { return model.FlightCommandPort; }
@@ -39,6 +43,8 @@ namespace FlightSimulator.ViewModels.Windows
                 NotifyPropertyChanged("FlightCommandPort");
             }
         }
+
+		// Flight info port - the port of the info channel.
 
         public int FlightInfoPort
         {

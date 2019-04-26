@@ -14,6 +14,15 @@ namespace FlightSimulator.Model
 	class SimulatorDataRecieverClientHandler : IClientHandler
 	{
 
+		public SimulatorDataRecieverClientHandler()
+		{
+			// Initialize the generic small attribute to ask the server about.
+
+		}
+
+		// Client Handling - get a stream from the client, and a reader. for eah line of values, parse it into a dictionary of 
+		// attribute names-values. updates the data manager about it.
+
 		public void HandleClient(TcpClient client)
 		{
 
@@ -39,6 +48,9 @@ namespace FlightSimulator.Model
 
 		}
 
+		/*	Parse a list of 25 doubles, into a dictionary by attaching each value to a name from genericSmall list, by order.	*/
+
+
 		//Example:
 		//-157.943192,21.325247,6.208333,-205.103104,-203.909668,12.000000,40.000000,0.000000,0.000000,
 		//-199.999863,-200.000000,22.676603,0.000000,-0.000134,270.009979,101.103622,-0.017824,-2.477949,
@@ -52,6 +64,7 @@ namespace FlightSimulator.Model
 			// converts the string list to a double list.
 			List<double> AttributeValuesDouble = new List<double>();
 
+			// converts from a string numbers to a double numbers.
 			foreach (string AttributeValueString in AttributeValuesString) {
 				AttributeValuesDouble.Add(Double.Parse(AttributeValueString));
 			} 

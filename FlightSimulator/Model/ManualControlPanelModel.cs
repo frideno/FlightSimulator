@@ -15,19 +15,27 @@ namespace FlightSimulator.Model
 
 		public ManualControlPanelModel() {
 			_dataManager = DataManager.Instance;
-
-			//_dataManager.PropertyChanged += UpdateManual;
 		}
 
-		
+
+		double rudderValue = 0;
+		double throttleValue = 0;
+		double elevatorValue = 0;
+		double aileronValue = 0;
+
+		// Rudder value. 
+
 		public double Rudder
         {
+			// return the matching private local var.
 			
             get
 			{
-
 				return rudderValue;
 			}
+
+			// setting the matching private local var to the value setted, and sending to the server a set request, only if connected to it.
+
 			set
 			{
 				rudderValue = value;
@@ -40,12 +48,15 @@ namespace FlightSimulator.Model
 		}
 		public double Elevator
 		{
+			// return the matching private local var.
 
 			get
 			{
-
 				return elevatorValue;
 			}
+
+			// setting the matching private local var to the value setted, and sending to the server a set request, only if connected to it.
+
 			set
 			{
 				elevatorValue = value;
@@ -59,30 +70,38 @@ namespace FlightSimulator.Model
 
 		public double Throttle
 		{
+			// return the matching private local var.
 
 			get
 			{
 				return throttleValue;
 			}
+
+			// setting the matching private local var to the value setted, and sending to the server a set request, only if connected to it.
+
 			set
 			{
 				throttleValue = value;
 
 				if (_dataManager.Connected)
 				{
-					string command = "set /controls/engines/engine/throttle " + value + "\r\n";
+					string command = "set /controls/engines/current-engine/throttle " + value + "\r\n";
 					_dataManager.CommandChannel.Send(command);
 				}
 			}
 		}
 		public double Aileron
 		{
+			// return the matching private local var.
 
 			get
 			{
 				return aileronValue;
 			}
 			set
+
+			// setting the matching private local var to the value setted, and sending to the server a set request, only if connected to it.
+
 			{
 				aileronValue = value;
 
@@ -95,28 +114,8 @@ namespace FlightSimulator.Model
 			}
 		}
 
-		 double rudderValue  = 0;
-		 double throttleValue  = 0;
-		 double elevatorValue  = 0;
-		 double aileronValue  = 0;
 
 
-		//void UpdateManual(object sender, PropertyChangedEventArgs args)
-		//{
-
-		//	if (args.PropertyName.Equals("/controls/flight/aileron"))
-		//		aileronValue = _dataManager.InfoDataDictionary["/controls/flight/aileron"];
-
-		//	else if (args.PropertyName.Equals("/controls/flight/elevator"))
-		//		elevatorValue = _dataManager.InfoDataDictionary["/controls/flight/elevator"];
-
-		//	else if (args.PropertyName.Equals("/controls/flight/rudder"))
-		//		rudderValue = _dataManager.InfoDataDictionary["/controls/flight/rudder"];
-
-		//	else if (args.PropertyName.Equals("/controls/engines/current-engine/throttle"))
-		//		throttleValue = _dataManager.InfoDataDictionary["/controls/engines/current-engine/throttle"];
-
-		//}
 
 	}
 }

@@ -18,6 +18,11 @@ namespace FlightSimulator.Model
 		public IClientHandler ClientHandler { get; set; }
 		public event Action FirstClientConnected;
 
+		private Thread thread;
+
+		// Start - logic: Binding to the ip of the computer, and the port given, and start listening.
+		// for only one first client arrived, handle it with client handler.
+
 		public void Start()
 		{
 			IPEndPoint ep = new	IPEndPoint(IPAddress.Parse("127.0.0.1"), Port);
@@ -26,7 +31,7 @@ namespace FlightSimulator.Model
 
 			// Waiting for connections...
 
-			Thread thread = new Thread(() => {
+			thread = new Thread(() => {
 				try
 				{
 					TcpClient client = listener.AcceptTcpClient();
@@ -37,7 +42,7 @@ namespace FlightSimulator.Model
 				}
 				catch (SocketException)
 				{
-					
+					// do nothing, it shouldn't be happening.
 				}
 
 			});
@@ -46,6 +51,7 @@ namespace FlightSimulator.Model
 		public void Stop()
 		{
 			listener.Stop();
+			thread.Abort();
 		}
 
 	}

@@ -13,6 +13,8 @@ namespace FlightSimulator.ViewModels
 	{
 	
 		private FlightMonitorModel model;
+
+		// a bool which symbolize localy if to present a "connect" or "disconnect" button.
 		private bool connectionButtonPressed;	
 
 		public FlightMonitorViewModel(FlightMonitorModel m) {
@@ -23,8 +25,14 @@ namespace FlightSimulator.ViewModels
 		public string ConnectionRequestDescription
 		{
 			get { return model.ConnectionRequestDescription; }
-		}		
+		}
+		
+
 		#region connectCommand
+
+		// Connect Command - checks if its a connect or disconnect command - and accordingly tells the model to do so,
+		// and changes the button to the other option (connect -> disconnect, disconnect -> connect).
+
 		private ICommand _connectCommand;
 		public ICommand ConnectCommand
 		{

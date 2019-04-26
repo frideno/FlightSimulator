@@ -30,7 +30,7 @@
 				<Setter Property="TextBlock.FontSize" Value="30"/>
 			</Style>
 		</Grid.Resources>
-		<views:Joystick x:Name="ControlJoystick" Grid.Column="2" Grid.Row="1" Aileron="{Binding Aileron, Mode=OneWayToSource}" Elevator="{Binding Elevator, Mode=OneWayToSource}"/>
+		<views:Joystick x:Name="ControlJoystick" Grid.Column="2" Grid.Row="1" Aileron="{Binding Aileron, UpdateSourceTrigger=PropertyChanged , Mode=OneWayToSource}" Elevator="{Binding Elevator, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"/>
 		<TextBlock Text="{Binding ElementName=RudderSlider, Path=Value, StringFormat='←    rudder   {0:#, 0.00}   →'}" Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" Style="{StaticResource fancyFont}" />
 
 		<TextBlock Text="{Binding ElementName=ControlJoystick, Path=Aileron, StringFormat='←    aileron    {0:#, 0.00}   →'}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource fancyFont}"/>
@@ -45,8 +45,8 @@
 			</TextBlock.LayoutTransform>
 		</TextBlock>
 
-		<Slider x:Name="RudderSlider" Value="{Binding Rudder}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom" Maximum="1" Minimum="-1" TickFrequency="0.05" TickPlacement="BottomRight" Background="Snow" Foreground="Black"/>
-		<Slider x:Name="ThrottleSlider" Value="{Binding Throttle}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Maximum="1" Minimum="-1" TickFrequency="0.05" TickPlacement="BottomRight" Background="Snow" Foreground="Black">
+		<Slider x:Name="RudderSlider" Value="{Binding Rudder, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom" Maximum="1" Minimum="-1" TickFrequency="0.05" TickPlacement="BottomRight" Background="Snow" Foreground="Black"/>
+		<Slider x:Name="ThrottleSlider" Value="{Binding Throttle, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Maximum="1" Minimum="-1" TickFrequency="0.05" TickPlacement="BottomRight" Background="Snow" Foreground="Black">
 			<Slider.LayoutTransform>
 				<RotateTransform Angle="90"/>
 			</Slider.LayoutTransform>

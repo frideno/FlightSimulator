@@ -14,7 +14,6 @@ namespace FlightSimulator.Model
 	{
 		public string CommandsTextBox { get; set; }
 
-
 		char[] newLine;
 
 		public AutoPilotModel()
@@ -25,15 +24,20 @@ namespace FlightSimulator.Model
 			CommandsTextBox = "";
 
 		}
+
+		// Clears CommandsTextBox - logic behind: initilize it to empty string.
+
 		public void Clear()
 		{
 			CommandsTextBox = "";
 		}
 
+		// Execute Commands - logic behind: splilt the command textbox by line, and iterate each line, and 
+		// sends to the command channel the line, and sleeps for 2 seconds (2000 ms).
+
 		public void ExceuteCommands()
 		{
 			IList<string> commands = new List<string>(CommandsTextBox.Split(newLine));
-			// send each line to server, and wait 2 seconds. all in new thread.
 
 			foreach (string command in commands)
 			{

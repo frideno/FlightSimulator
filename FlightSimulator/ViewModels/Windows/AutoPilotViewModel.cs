@@ -19,6 +19,7 @@ namespace FlightSimulator.ViewModels.Windows
 			model = m;
 		}
 
+		// the textbox which into you enters commands in view. binded to it.
 		public string CommandsTextBox
 		{
 			set
@@ -32,6 +33,9 @@ namespace FlightSimulator.ViewModels.Windows
 			}
 		}
 
+		// local bool which symbolize if the commands in textbox are currently executing, which 
+		// helps for converter from this to brush - background of the textbox in view.
+
 		private bool isExecuting;
 		public bool IsExecuting
 		{
@@ -43,8 +47,12 @@ namespace FlightSimulator.ViewModels.Windows
 			}
 		}
 
+
 		#region Commands
 		#region ClickCommand
+
+		// ok click command - when OK clicked in view:
+
 		private ICommand _okClickCommand;
 		public ICommand OkClickCommand
 		{
@@ -53,6 +61,10 @@ namespace FlightSimulator.ViewModels.Windows
 				return _okClickCommand ?? (_okClickCommand = new CommandHandler(() => OnOK()));
 			}
 		}
+
+		// on pressed OK, a new task is started (if there is a connection), which tells the model to execute and 
+		// sign isExecute bool to true, and in the end to false so the converter will work.
+
 		private void OnOK()
 		{
 			if (DataManager.Instance.Connected)
@@ -68,6 +80,8 @@ namespace FlightSimulator.ViewModels.Windows
 			
 		}
 		#endregion
+
+		// cancel click command - when Cancel clicked in view:
 
 		#region ClickCommand
 		private ICommand _clearCommand;

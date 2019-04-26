@@ -19,9 +19,11 @@ namespace FlightSimulator.ViewModels.Windows
         public ManualControlPanelViewModel(IManualControlPanelModel m)
         {
             this.model = m;
-			DataManager.Instance.PropertyChanged += UpdateManualdWhenChanged;
+			DataManager.Instance.PropertyChanged += new PropertyChangedEventHandler(UpdateManualdWhenChanged);
         }
 
+		// An Elevator variable - a symbol of the plane controller.
+		
 		public double Elevator
 		{
 			get {return model.Elevator;	}
@@ -31,6 +33,8 @@ namespace FlightSimulator.ViewModels.Windows
 				NotifyPropertyChanged("Elevator");
 			}
 		}
+
+		// A Throttle variable - a symbol of the plane controller.
 
 		public double Throttle
 		{ 
@@ -42,6 +46,8 @@ namespace FlightSimulator.ViewModels.Windows
 			}
 		}
 
+		// An Aileron variable - a symbol of the plane controller.
+
 		public double Aileron
 		{
 			get { return model.Aileron; }
@@ -52,6 +58,8 @@ namespace FlightSimulator.ViewModels.Windows
 			}
 		}
 
+		// A Rudder variable - a symbol of the plane controller.
+
 		public double Rudder
 		{
 			get { return model.Rudder; }
@@ -61,6 +69,10 @@ namespace FlightSimulator.ViewModels.Windows
 				NotifyPropertyChanged("Rudder");
 			}
 		}
+
+
+		// A function that subscribed to the event of main DataManager when new data comes from the server:
+		// What it does is to update accordinly alieron/elevator/rudder/throttle - makes the binding two sided.
 
 		void UpdateManualdWhenChanged(object sender, PropertyChangedEventArgs args)
 		{

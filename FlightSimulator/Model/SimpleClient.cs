@@ -14,31 +14,51 @@ namespace FlightSimulator.Model
 	{
 		public IPEndPoint IpAndPort { get; set; }
 
+		// keep private tcpClient, and binary writer so the send function can use them.
+
+		private TcpClient tcpClient;
+
+		private StreamWriter connectionWriter = null;
+
 
 		// send to the server by opening new connection for each message.
-		public void Send(string str)
-		{
-			try
-			{
-				TcpClient tcpClient = new TcpClient();
-				tcpClient.Connect(IpAndPort);
 
-				using (NetworkStream stream = tcpClient.GetStream())
-				using (BinaryWriter writer = new BinaryWriter(stream))
-				{
-					var message = System.Text.Encoding.ASCII.GetBytes(str);
-					writer.Write(message, 0, message.Length);
-				}
+		public void Send(string message)
+		{
+			// varify they connect function called before send.
+
+			if (connectionWriter == null) return;
+
+			try
+			{			
+				connectionWriter.WriteLine(message);
+				
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				return;
 			}
 		}
 
-		public void Connect() {
+		// Connect - simple tcp connection to the IpAndPort.
 
+		public void Connect()
+		{
+			tcpClient = new TcpClient();
+			tcpClient.Connect(IpAndPort);
 
+			connectionWriter = new StreamWriter(tcpClient.GetStream());
+		}
+
+		// Disconnect - simple disconnection.
+
+		public void Disconnect()
+		{
+			if (tcpClient != null)
+			{
+				tcpClient.Close();
+				tcpClient = null;
+			}
 		}
 	}
 }

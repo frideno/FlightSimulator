@@ -12,7 +12,10 @@ namespace FlightSimulator.Model.Interface
 		// the port + ip the client will talk to .
 		IPEndPoint IpAndPort { get; set; }
 
+		// connect and disconnect to/from server.
 		void Connect();
+
+		void Disconnect();
 
 		// send data to the server.
 		void Send(string str);
